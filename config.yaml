@@ -1,0 +1,9 @@
+app:
+  port: 8000
+db:
+  diver: "postgres"
+  host: "103.117.148.23" 
+  port: 5432             
+  username: myuser
+  password: mypassword
+  dbname: mydatabase
