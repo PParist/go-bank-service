@@ -1,24 +1,24 @@
 # go-bank-service
 
 ## Overview
-`go-bank-service` เป็นโปรเจ็กต์ฝึกในการสร้าง API service โดยใช้ภาษา Go โดยในโปรเจ็กต์นี้จะมีการใช้ [Fiber](https://gofiber.io/) ซึ่งเป็น web framework , [GORM](https://gorm.io/) ซึ่งเป็น ORM (Object-Relational Mapping) , ใช้และโครงสร้างแบบ Hexagonal Architecture เพื่อทำให้โค้ดมีการจัดการที่ดีและง่ายต่อการบำรุงรักษา
+`go-bank-service` is a practice project for creating an API service using the Go language. This project utilizes [Fiber](https://gofiber.io/), a high-performance and easy-to-use web framework, [GORM](https://gorm.io/), a popular ORM (Object-Relational Mapping) for Go, and the Hexagonal Architecture (also known as Clean Architecture) to ensure well-organized and maintainable code.
 
 ## Features
-- สร้างและจัดการบัญชีธนาคาร
-- ฝากและถอนเงิน
-- ดูประวัติการทำธุรกรรม
-- ใช้ Fiber ในการสร้าง RESTful API
-- ใช้ GORM ในการเชื่อมต่อและจัดการฐานข้อมูล
-- ออกแบบโครงสร้างโปรเจ็กต์ตามแนวคิด Hexagonal Architecture
+- Create and manage bank accounts
+- Deposit and withdraw money
+- View transaction history
+- Use Fiber to build RESTful APIs
+- Use GORM for database interaction and management
+- Structure the project following Hexagonal Architecture principles
 
 ## Requirements
 - Go 1.18+
-- Docker (สำหรับการตั้งค่าและใช้งานฐานข้อมูล)
-- make (สำหรับคำสั่ง build และ run)
+- Docker (for setting up and running the database)
+- make (for build and run commands)
 
 ## Getting Started
-### การติดตั้งและรันโปรเจ็กต์
-1. คลอนโค้ดโปรเจ็กต์จาก GitHub:
+### Installation and Running the Project
+1. Clone the project from GitHub:
    ```sh
    git clone https://github.com/PParist/go-bank-service.git
    cd go-bank-service
