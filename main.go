@@ -17,16 +17,15 @@ import (
 	"gorm.io/gorm/logger"
 )
 
-//const userContextKey = "user"
-
-// const (
-// 	host     = "103.117.148.23" // or the Docker service name if running in another container
-// 	port     = 5432             // default PostgreSQL port
-// 	user     = "myuser"         // as defined in docker-compose.yml
-// 	password = "mypassword"     // as defined in docker-compose.yml
-// 	dbname   = "mydatabase"     // as defined in docker-compose.yml
-// )
-
+// @title My Api Service
+// @description This is a sample server for a API.
+// @version 1.0
+// @host localhost:8000
+// @BasePath /
+// @schemes http
+// @securityDefinitions.apikey ApiKeyAuth
+// @in header
+// @name Authorization
 func main() {
 	initConfig()
 

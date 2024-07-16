@@ -39,6 +39,9 @@ func (r *userService) CreateUser(_user *entities.User) error {
 	}
 	if err := r.repo.Create(*_user); err != nil {
 		logs.Error(err)
+		if err.Error() == "user already exists" {
+			return errorhandler.NewErrorBadRequest("user already exists")
+		}
 		return errorhandler.NewErrorInternalServerError(err.Error())
 	}
 	return nil

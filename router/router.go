@@ -37,11 +37,11 @@ func InitRouterConfig(app *fiber.App, db *gorm.DB) {
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: "*", // Adjust this to be more restrictive if needed
 		AllowMethods: "GET,POST,HEAD,PUT,DELETE,PATCH",
-		AllowHeaders: "Origin, Content-Type, Accept",
+		AllowHeaders: "Origin, Content-Type, Accept , Authorization",
 	}))
 
-	app.Post("/api/login", authHttp.UserLogin)
-
+	app.Post("/api/auth/login", authHttp.UserLogin)
+	app.Post("/api/user", http.CreateUser)
 	// JWT Middleware & Middleware check role(restricted)
 	app.Use(jwtware.New(jwtware.Config{
 		SigningKey: jwtware.SigningKey{Key: []byte(os.Getenv("JWT_SECRECT"))},
@@ -50,9 +50,8 @@ func InitRouterConfig(app *fiber.App, db *gorm.DB) {
 	api := app.Group("/api", middleware.ApiMiddleware, middleware.RateLimiter(), middleware.Compression())
 
 	admin := api.Group("/admin", jwtPackage.RoleRequired("Admin"))
-	admin.Post("/user", http.CreateUsers)
+
 	admin.Delete("/remove/:id", http.DeleteUser)
-	admin.Post("/account/:user_uid", accountHttp.CreateAccount)
 	admin.Delete("/account/:account_uid", accountHttp.DeleteAccountByUID)
 
 	// admin.Put("/user/:id", http.UpdateUser)
@@ -74,6 +73,7 @@ func InitRouterConfig(app *fiber.App, db *gorm.DB) {
 	api.Get("/user/:id", http.GetUserByID)
 	api.Get("/accounts", accountHttp.GetAccounts)
 	api.Get("/accounts/:user_uid", accountHttp.GetAccountByUserUID)
+	api.Post("/account/:user_uid", accountHttp.CreateAccount)
 
 	logs.Info("Service start on port :" + viper.GetString("app.port"))
 	app.Listen(fmt.Sprintf(":%v", viper.GetInt("app.port")))

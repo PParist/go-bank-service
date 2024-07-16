@@ -18,7 +18,7 @@ func NewUserHandler(service service.UserService) userHandler {
 	return userHandler{service: service}
 }
 
-func (h *userHandler) CreateUsers(c *fiber.Ctx) error {
+func (h *userHandler) CreateUser(c *fiber.Ctx) error {
 	user := entities.User{}
 	if err := c.BodyParser(&user); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
@@ -77,7 +77,6 @@ func (h *userHandler) UpdateUser(c *fiber.Ctx) error {
 	if err := c.BodyParser(&user); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": err.Error()})
 	}
-	//userToken := c.Locals(jwt.UserContextKey).(*entities.UserToken)
 	if user, err := h.service.UpdateUserByID(_id, user); err != nil {
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": err.Error()})
 	} else {
